@@ -17,7 +17,6 @@ router.get('/', function(req, res, next) {
 	  clearTimeout(durationId);
 	  gpio.write(gpioPin, 0, function() { // turn off pin 16
 	  gpio.close(gpioPin); // then Close pin 16
-	  process.exit(0); // and terminate the program
 	  });
 	}, 200); // duration in mS
 	

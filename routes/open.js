@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 	  gpio.write(apDoor, 0, function() { // turn off pin 15
 	  gpio.close(apDoor); // then Close pin 15
 	  });
-	}, 250); // duration in mS
+	}, 600); // duration in mS
 	
 	
 	gpio.open(flatDoor, "output", function(err) {

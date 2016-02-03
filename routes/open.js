@@ -3,11 +3,11 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
 	
-	
 	var gpio = require("pi-gpio");
 
 	var intervalId;
 	var durationId;
+	var durationId2;
 	var apDoor = 15;    // header pin 16 = GPIO port 23
 	var flatDoor = 16;
 
@@ -27,8 +27,8 @@ router.get('/', function(req, res, next) {
 	        gpio.write(flatDoor, 1, function() {});
 	});
 
-	durationId = setTimeout( function(){
-	  clearTimeout(durationId);
+	durationId2 = setTimeout( function(){
+	  clearTimeout(durationId2);
 	  gpio.write(flatDoor, 0, function() { // turn off pin 16
 	  gpio.close(flatDoor); // then Close pin 16
 	  });

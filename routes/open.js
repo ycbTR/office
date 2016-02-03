@@ -2,25 +2,39 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-
+	
+	
 	var gpio = require("pi-gpio");
 
 	var intervalId;
 	var durationId;
-	var gpioPin = 16;    // header pin 16 = GPIO port 23
+	var apDoor = 15;    // header pin 16 = GPIO port 23
+	var flatDoor = 16;
 
-	gpio.open(gpioPin, "output", function(err) {
-	        gpio.write(gpioPin, 1, function() {});
+	gpio.open(apDoor, "output", function(err) {
+	        gpio.write(apDoor, 1, function() {});
 	});
 
 	durationId = setTimeout( function(){
 	  clearTimeout(durationId);
-	  gpio.write(gpioPin, 0, function() { // turn off pin 16
-	  gpio.close(gpioPin); // then Close pin 16
+	  gpio.write(apDoor, 0, function() { // turn off pin 15
+	  gpio.close(apDoor); // then Close pin 15
 	  });
-	}, 200); // duration in mS
+	}, 250); // duration in mS
 	
-  res.send('respond with a resource');
+	
+	gpio.open(flatDoor, "output", function(err) {
+	        gpio.write(flatDoor, 1, function() {});
+	});
+
+	durationId = setTimeout( function(){
+	  clearTimeout(durationId);
+	  gpio.write(flatDoor, 0, function() { // turn off pin 16
+	  gpio.close(flatDoor); // then Close pin 16
+	  });
+	}, 250); // duration in mS
+
+	res.redirect('/');  
 });
 
 module.exports = router;

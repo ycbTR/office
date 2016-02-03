@@ -12,27 +12,27 @@ router.get('/', function(req, res, next) {
 	var flatDoor = 16;
 
 	gpio.open(apDoor, "output", function(err) {
-	        gpio.write(apDoor, 1, function() {});
+	        gpio.write(apDoor, 0, function() {});
 	});
 
 	durationId = setTimeout( function(){
 	  clearTimeout(durationId);
-	  gpio.write(apDoor, 0, function() { // turn off pin 15
+	  gpio.write(apDoor, 1, function() { // turn off pin 15
 	  gpio.close(apDoor); // then Close pin 15
 	  });
-	}, 2000); // duration in mS
+	}, 400); // duration in mS
 	
 	
 	gpio.open(flatDoor, "output", function(err) {
-	        gpio.write(flatDoor, 1, function() {});
+	        gpio.write(flatDoor, 0, function() {});
 	});
 
 	durationId2 = setTimeout( function(){
 	  clearTimeout(durationId2);
-	  gpio.write(flatDoor, 0, function() { // turn off pin 16
+	  gpio.write(flatDoor, 1, function() { // turn off pin 16
 	  gpio.close(flatDoor); // then Close pin 16
 	  });
-	}, 2000); // duration in mS
+	}, 400); // duration in mS
 
 	res.redirect('/');  
 });

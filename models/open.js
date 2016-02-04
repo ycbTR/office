@@ -1,3 +1,9 @@
+var gpio = require("pi-gpio");
+var intervalId;
+var durationId;
+var durationId2;
+var apDoor = 15;    // header pin 16 = GPIO port 23
+var flatDoor = 16;
 
 function openMain(){
 	

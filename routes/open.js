@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {	
 	model.openMain();
-	openFlat();
+	model.openFlat();
 	res.redirect('/');  
 });
 
